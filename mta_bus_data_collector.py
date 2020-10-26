@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 
 """
@@ -123,21 +122,4 @@ if __name__ == '__main__':
         time.sleep(30)
 
     df.to_csv('mta_bus_data_' + bus_line + '_' + date_str + '.csv', index=False)
-
-
-
-        
-
-
-        
-
-
-
-
-
-
-
-
-
-
 
