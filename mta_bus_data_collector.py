@@ -113,13 +113,19 @@ if __name__ == '__main__':
     # run for 1 day at 30 second intervals
     for i in range(2880):
 
-        api_data = collect_data(bus_line)
+        try:
 
-        df_temp = process_data(api_data)
+            api_data = collect_data(bus_line)
 
-        df = df.append(df_temp, ignore_index=True)
+            df_temp = process_data(api_data)
 
-        time.sleep(30)
+            df = df.append(df_temp, ignore_index=True)
+            print(i, len(df))
+            time.sleep(30)
+            
+        except:
+
+            continue
 
     df.to_csv('mta_bus_data_' + bus_line + '_' + date_str + '.csv', index=False)
 
