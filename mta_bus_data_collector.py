@@ -120,7 +120,9 @@ if __name__ == '__main__':
             df_temp = process_data(api_data)
 
             df = df.append(df_temp, ignore_index=True)
+
             print(i, len(df))
+            
             time.sleep(30)
             
         except:
