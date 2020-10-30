@@ -87,11 +87,13 @@ def process_data(api_data):
 
         df_temp = pd.DataFrame()
 
-        df_temp['bus_line'] = [api_data[bus_num]['MonitoredVehicleJourney']['LineRef']]
-        df_temp['date_time'] = [api_data[bus_num]['RecordedAtTime']]
-        df_temp['lat'] = [api_data[bus_num]['MonitoredVehicleJourney']['VehicleLocation']['Latitude']]
-        df_temp['lon'] = [api_data[bus_num]['MonitoredVehicleJourney']['VehicleLocation']['Longitude']]
-        df_temp['vehicle_id'] = [api_data[bus_num]['MonitoredVehicleJourney']['VehicleRef']]
+        bus_data = api_data[bus_num]
+        
+        df_temp['bus_line'] = [bus_data['MonitoredVehicleJourney']['LineRef']]
+        df_temp['date_time'] = [bus_data['RecordedAtTime']]
+        df_temp['lat'] = [bus_data['MonitoredVehicleJourney']['VehicleLocation']['Latitude']]
+        df_temp['lon'] = [bus_data['MonitoredVehicleJourney']['VehicleLocation']['Longitude']]
+        df_temp['vehicle_id'] = [bus_data['MonitoredVehicleJourney']['VehicleRef']]
 
         df = df.append(df_temp, ignore_index=True)
 
@@ -122,7 +124,7 @@ if __name__ == '__main__':
             df = df.append(df_temp, ignore_index=True)
 
             print(i, len(df))
-            
+
             time.sleep(30)
             
         except:
